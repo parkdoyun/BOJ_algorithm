@@ -4,16 +4,19 @@
 
 using namespace std;
 
+// 백준 10800 - 컬러볼
+// 부분합
+// 골드 3
+
 // 배열 터지지 않을까?
 // 1. 전체 공 sumArr 배열 (몇번째 idx인지 알아야 함)
 // 2. 색깔별 공 sumArr 배열 (크기 및 info 배열에서 어디있는지 알아야 함)
 // 3. 공 정보 배열 (부분 sumArr에서 어디있는지 알아야 함)
 
-// 이분탐색으로 위치 찾아서 (나보다 작지만 제일 큰 애)
+// 이분탐색으로 위치 찾아서 (나보다 작지만 제일 큰 애) => 시간초과
 // 나 빼고 부분합 빼기
 
 // 이분탐색 말고 그냥 기록하자
-
 // 같은 수가 두개 있을 때 생각 못 함!!!
 
 struct ball
@@ -52,32 +55,6 @@ vector<ball> total_vec; // 전체 공 정렬할 배열
 vector<vector<color_b>> color_vec;
 vector<vector<int>> sum_color; // color sum arr
 int n;
-
-/*
-int binary_search(int idx)
-{
-	info_b goal = info_vec[idx];
-	int start = 1;
-	int end = n;
-	int mid;
-	int goal_idx = 0;
-	while (start <= end)
-	{
-		mid = (start + end) / 2;
-		if (total_vec[mid].size < goal.size)
-		{
-			goal_idx = mid;
-			start++;
-		}
-		else
-		{
-			end--;
-		}
-	}
-
-	return sumArr[goal_idx] - sum_color[goal.color][goal.idx - 1];
-}
-*/
 
 int main()
 {
@@ -125,22 +102,28 @@ int main()
 	}
 	
 	int res;
+	int info_total_idx, info_c, info_i, info_s;
 	for (int i = 1; i <= n; i++)
 	{
 		// 나보다 같은 것 있으면 삭제
-		res = sumArr[info_vec[i].total_idx - 1] - sum_color[info_vec[i].color][info_vec[i].idx - 1];
+		info_total_idx = info_vec[i].total_idx;
+		info_c = info_vec[i].color;
+		info_i = info_vec[i].idx;
+		info_s = info_vec[i].size;
+
+		res = sumArr[info_total_idx - 1] - sum_color[info_c][info_i - 1];
 
 		// 나와 같은 것 앞에 있으면 삭제 (total_vec)
-		for (int j = info_vec[i].total_idx - 1; j >= 1; j--)
+		for (int j = info_total_idx - 1; j >= 1; j--)
 		{
-			if (total_vec[j].size == info_vec[i].size) res -= info_vec[i].size;
+			if (total_vec[j].size == info_s) res -= info_s;
 			else break;
 		}
 
 		// 나와 같은 것 앞에 있으면 더하기 (color_vec)
-		for (int j = info_vec[i].idx - 1; j >= 1; j--)
+		for (int j = info_i - 1; j >= 1; j--)
 		{
-			if (color_vec[info_vec[i].color][j].size == info_vec[i].size) res += info_vec[i].size;
+			if (color_vec[info_c][j].size == info_s) res += info_s;
 			else break;
 		}
 
