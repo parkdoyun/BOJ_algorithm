@@ -6,7 +6,10 @@ using namespace std;
 
 // 백준 9019 - DSLR
 // D, S, L, R 전부 수행해서 최소 찾는다
-// 시간초과
+// 골드 4
+
+// pq -> q로 바꾸니까 됨
+// pq 쓸 이유 없음 (pq는 빼는 데 O(logN), q는 O(1))
 
 int chk_num[10001]; // 여기 체크해서 찾자
 
@@ -16,11 +19,6 @@ struct node
 	int order_n = 0;
 	string order = "";
 };
-bool operator<(node n1, node n2)
-{
-	if (n1.order_n > n2.order_n) return true;
-	return false;
-}
 queue<node> pq;
 int num_arr[4];
 
