@@ -1,7 +1,10 @@
 #include <iostream>
 
-
 using namespace std;
+
+// 백준 16434 - 드래곤 앤 던전
+// 이분탐색
+// 골드 4
 
 // 이분탐색으로 풀어보자
 
@@ -76,12 +79,12 @@ int main()
 		arr_room[i] = { t, a, h };
 		if (t == 1) // monster
 		{
-			if (h % tmp_atk == 0) end1 = (long long int)(end1 + (long long int)(a * (h / tmp_atk - 1))); // 딱 떨어지면 -1, 딱 떨어지지 않으면 그대로
-			else end1 = (long long int)(end1 + (long long int)(a * (h / tmp_atk)));
+			if (h % tmp_atk == 0) end1 += (long long int)(a * (h / tmp_atk - 1)); // 딱 떨어지면 -1, 딱 떨어지지 않으면 그대로
+			else end1 += (long long int)(a * (h / tmp_atk));
 		}
 		else // 2, potion
 		{
-			tmp_atk = (long long int)(tmp_atk + (long long int)a);
+			tmp_atk += (long long int)a;
 		}
 	}
 	end1 += (long long int)1;
