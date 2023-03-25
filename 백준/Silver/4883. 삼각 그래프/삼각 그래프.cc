@@ -18,13 +18,13 @@ int DP[100001][3];
 
 int main()
 {
+    ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+    
 	int tc = 1;
 	while(true)
 	{	
-		ios_base::sync_with_stdio(false);
-		cin.tie(0);
-		cout.tie(0);
-
 		cin >> n;
 		if (n == 0) break;
 		for (int i = 0; i < n; i++)
