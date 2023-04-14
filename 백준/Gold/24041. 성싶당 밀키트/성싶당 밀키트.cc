@@ -61,7 +61,7 @@ bool chk(long long int m) // 뺄 수 있는 애들 중 큰 순서대로 최대 K
 void binary_search()
 {
 	long long int start = 1;
-	long long int end = max_l + (g / min_s) + 1;
+	long long int end = 2000000000;
 	long long int mid;
 
 	while (start <= end)
