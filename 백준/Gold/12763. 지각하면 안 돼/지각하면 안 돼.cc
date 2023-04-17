@@ -4,7 +4,10 @@
 
 using namespace std;
 
+// 백준 12763 - 지각하면 안 돼
 // BFS
+// 골드 2
+
 // 전부 해보면 되겠다
 // 도착 못 한다면 -1
 
@@ -26,7 +29,6 @@ bool operator<(node n1, node n2)
 }
 priority_queue<node> pq;
 
-int visit[102]; // visit 함수
 vector<vector<node>> E;
 int min_money = INF;
 
@@ -39,6 +41,7 @@ void BFS()
 		node tmp = pq.top();
 		pq.pop();
 
+		// visit 처리하면 안 됨 (시간이나 돈 기준으로 visit 처리하면 기준 안 된 돈이나 시간에 걸리는 경우의 수 생길 수 있음)
 		//if (visit[tmp.num] == 1) continue;
 		//visit[tmp.num] = 1;
 
@@ -50,8 +53,7 @@ void BFS()
 
 		for (int i = 0; i < E[tmp.num].size(); i++)
 		{
-			if (visit[E[tmp.num][i].num] == 0 && tmp.money + E[tmp.num][i].money <= m &&
-				tmp.time + E[tmp.num][i].time <= t)
+			if (tmp.money + E[tmp.num][i].money <= m &&	tmp.time + E[tmp.num][i].time <= t)
 			{
 				pq.push({ E[tmp.num][i].num, tmp.time + E[tmp.num][i].time, tmp.money + E[tmp.num][i].money });
 			}
