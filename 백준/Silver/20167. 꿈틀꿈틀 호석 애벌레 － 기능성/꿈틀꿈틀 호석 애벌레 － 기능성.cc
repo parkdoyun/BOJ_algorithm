@@ -26,23 +26,11 @@ int main()
 		cin >> food[i];
 	}
 
-	// 기저 조건
 	int tmp = 0;
 	int idx;
-	for (int i = n; i >= 1; i--)
-	{
-		tmp += food[i];
-		if (tmp >= k)
-		{
-			idx = i;
-			break;
-		}
-	}
-	if (tmp - k < 0) idx = 1;
-	else DP[idx] = tmp - k;
 	
 	// DP
-	for (int i = idx - 1; i >= 1; i--)
+	for (int i = n; i >= 1; i--)
 	{
 		tmp = 0;
 		for (int j = i; j <= n; j++)
