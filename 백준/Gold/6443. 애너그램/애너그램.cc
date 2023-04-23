@@ -8,16 +8,16 @@
 using namespace std;
 
 // 백준 6443 - 애너그램
+// BFS
+// 골드 5
 
 // backtracking
 // 시간초과
 
 // bfs, 비트마스킹으로 해보자
-// 아니면 한 for문 돌때 벡터 전부 확인 (비트 마스킹 검사해서 붙일지 말지)
-// 만약 map에 있다면 추가 안 함
+// map으로 메모리 초과 방지
 
-int path[21];
-int n, len;
+int len;
 string origin_s;
 
 struct alpha
@@ -64,6 +64,7 @@ int main()
 	cin.tie(0);
 	cout.tie(0);
 
+	int n;
 	cin >> n;
 
 	string print_s;
