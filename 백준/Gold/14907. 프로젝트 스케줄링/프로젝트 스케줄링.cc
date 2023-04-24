@@ -6,21 +6,22 @@ using namespace std;
 
 // 백준 14907 - 프로젝트 스케줄링
 // tree
+// 골드 2
+
 // 부모가 여러개 -> 부모들이 전부 완료될 때까지 하지 못 한다
 // 부모들의 최댓값에서 더해야 함
 // 정점 최대 26개 (A : 0 ~ Z : 25)
 // 자식 여러명, 부모 여러명 => 트리 구조 2차원 배열
 
-// 루트가 여럿일 수 있음
+// **예외 : 루트가 여럿일 수 있음**
 
 #define INF 999999999
 
-int root[26]; // 1이면 부모 X
+int root[26]; // 1이면 부모 X, 루트
 int vertex_time[26];
 int total_time[26]; // 소요된 시간
 vector<vector<int>> parent; // 부모 관계
 vector<vector<int>> child; // 자식 관계
-//int root; // 루트 번호 (부모 없다면)
 
 // 만약 다른 부모가 INF (일단 나오기)
 // 만약 모든 부모가 INF 아니라면 그 중 최대로 설정
@@ -73,8 +74,7 @@ int main()
 
 		vertex = (int)(s[0] - 'A');
 
-		idx = 1;
-		while (s[idx] == ' ') idx++;
+		idx = 2;
 
 		tmp = ""; // 자연수
 		for (; idx < s.length(); idx++)
@@ -85,7 +85,7 @@ int main()
 		tmp_time = stoi(tmp);
 		vertex_time[vertex] = tmp_time; // 해당 정점에서만 걸리는 시간
 
-		while (s[idx] == ' ') idx++;
+		idx++;
 		tmp = "";
 		for (; idx < s.length(); idx++)
 		{
