@@ -2,10 +2,16 @@
 
 using namespace std;
 
+// 백준 9077 - 지뢰제거
+// 누적합
+// 골드 3
+
+// 좌표 11보다 작을 때 예외처리 안 하려고 11 * 11부터 시작함
+
 // 메모리 초과
 // arr 비트로 바꾸자
 
-char arr[10012][10012];
+char arr[10012][10012]; // 메모리 초과로 char로 변경
 int sumArr[10012][10012]; // sumArr[i][j] = sumArr[i - 10][j - 10]부터 지뢰 갯수
 
 int main()
@@ -43,36 +49,6 @@ int main()
 		{
 			for (int j = 11; j <= 10011; j++)
 			{ 
-				/*
-				if (i == 0 && j == 0) // 초기 조건
-				{
-					sumArr[i][j] = (int)arr[i][j];
-				}
-				else if (i < 11 && j < 11) // 초기 조건
-				{
-					sumArr[i][j] = (int)arr[i][j] + sumArr[i - 1][j] + sumArr[i][j - 1] - sumArr[i - 1][j - 1];
-				}
-				else if (i == 0)
-				{
-					sumArr[i][j] = (int)arr[i][j] + sumArr[i][j - 1] - (int)arr[i][j - 11];
-				}
-				else if (j == 0)
-				{
-					sumArr[i][j] = (int)arr[i][j] + sumArr[i - 1][j] - (int)arr[i - 11][j];
-				}
-				else if (i < 11)
-				{
-					sumArr[i][j] = (int)arr[i][j] + sumArr[i - 1][j] + sumArr[i][j - 1] - sumArr[i - 1][j - 1] - (int)arr[i][j - 11];
-				}
-				else if (j < 11)
-				{
-					sumArr[i][j] = (int)arr[i][j] + sumArr[i - 1][j] + sumArr[i][j - 1] - sumArr[i - 1][j - 1] - (int)arr[i - 11][j];
-				}
-				else
-				{
-					sumArr[i][j] = (int)arr[i][j] + sumArr[i - 1][j] + sumArr[i][j - 1] - sumArr[i - 1][j - 1] + (int)arr[i - 11][j - 11] - (int)arr[i - 11][j] - (int)arr[i][j - 11];
-				}
-				*/
 				sumArr[i][j] = (int)arr[i][j] + sumArr[i - 1][j] + sumArr[i][j - 1] - sumArr[i - 1][j - 1] + (int)arr[i - 11][j - 11] - (int)arr[i - 11][j] - (int)arr[i][j - 11];
 				if (sumArr[i][j] > max_cnt) max_cnt = sumArr[i][j];
 			}
