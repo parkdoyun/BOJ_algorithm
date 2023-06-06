@@ -3,9 +3,11 @@
 
 using namespace std;
 
-// 시간 초과
-// 석순 찾는 거 가장 가까운 거 미리 찾아 놓기
-// 만약 석순 없다면 바로 패스
+// 백준 25173 - 용감한 아리의 동굴 대탈출
+// 구현, BFS
+// 골드 1
+
+// 시간 초과 -> 만약 석순 없다면 바로 패스
 
 int n, m;
 int board[51][51];
@@ -180,34 +182,10 @@ bool simulation()
 {
 	while (true)
 	{
-		// if (ari_attack()) break;
-		// 아리 공격
-		bhp -= apower;
-		if (bhp <= 0) break;
-		
-		// 아리 이동
+		if (ari_attack()) break;		
 		if (ari_mov()) break;
-
-		// 보스 공격
-		// if (boss_attack()) break;
-		if (s_cnt > 0 && find_mon())
-		{
-			mhp = bpower;
-			monster_attack();
-
-			if (ahp <= 0) break;
-		}
-		
-		// boss_mov();
-		// 보스 이동
-		if (!(prev_ay == ay && prev_ax == ax))
-		{
-			board[by][bx] = 0;
-			by = prev_ay;
-			bx = prev_ax;
-			bdir = adir;
-			board[by][bx] = 3;
-		}
+		if (s_cnt > 0 && boss_attack()) break;
+		boss_mov();
 	}
 
 	if (bhp <= 0) return true;
