@@ -6,6 +6,10 @@
 
 using namespace std;
 
+// 백준 1941 - 소문난 칠공주
+// BFS
+// 골드 3
+
 struct pos
 {
 	int y = -1;
@@ -58,13 +62,6 @@ void BFS(int sy, int sx)
 			for (int i = 0; i < 5; i++) s.push_back(tmp.visit[i]);
 			if (map1.find(s) == map1.end())
 			{
-				/*
-				for (int i = 0; i < 5; i++)
-				{
-					cout << s[i] << '\n';
-				}
-				cout << '\n';
-				*/
 				cnt++;
 				map1.insert({ s, 1 });
 			}
