@@ -44,6 +44,7 @@ int main()
 
 	if(res < 0) res *= -1;
 
+	// 이렇게 하면 자동 소수점 두자리에서 반올림
 	cout << fixed;
 	cout.precision(1);
 	cout << res;
